@@ -10,10 +10,31 @@
                <div class="card-body">
 
                 <form method="POST" action="{{route('horse.store')}}">
-                    Name: <input type="text" name="horse_name">
-                    Runs: <input type="text" name="horse_runs">
-                    Wins: <input type="text" name="horse_wins">
-                    About: <textarea type="text" name="horse_about"></textarea>
+
+                    <div class="form-group">
+                        <label>Name:</label>
+                        <input type="text" class="form-control" name="horse_name">
+                        <small class="form-text text-muted">Name.</small>
+                      </div>
+
+                    <div class="form-group">
+                        <label>Runs:</label>
+                        <input type="text" class="form-control" name="horse_runs">
+                        <small class="form-text text-muted">Runs.</small>
+                     </div>
+
+                    <div class="form-group">
+                        <label>Wins:</label>
+                        <input type="text" class="form-control" name="horse_wins">
+                        <small class="form-text text-muted">Wins.</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label>About:</label>
+                        <textarea type="text" class="form-control" name="horse_about"></textarea>
+                        <small class="form-text text-muted">About.</small>
+                     </div>
+
                     @csrf
                     <button type="submit" class="btn btn-light">ADD</button>
 

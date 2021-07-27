@@ -9,10 +9,31 @@
 
                <div class="card-body">
                 <form method="POST" action="{{route('horse.update',$horse)}}">
-                    Name: <input type="text" name="horse_name" value="{{$horse->name}}">
-                    Runs: <input type="text" name="horse_runs" value="{{$horse->runs}}">
-                    Wins: <input type="text" name="horse_wins" value="{{$horse->wins}}">
-                    Runs: <textarea type="text" name="horse_about" value="{{$horse->about}}"></textarea>
+
+                    <div class="form-group">
+                        <label>Name:</label>
+                        <input type="text" class="form-control" name="horse_name" value="{{$horse->name}}">
+                        <small class="form-text text-muted">Name.</small>
+                      </div>
+
+                    <div class="form-group">
+                        <label>Runs:</label>
+                        <input type="text" class="form-control" name="horse_runs" value="{{$horse->runs}}">
+                        <small class="form-text text-muted">Runs.</small>
+                     </div>
+
+                    <div class="form-group">
+                        <label>Wins:</label>
+                        <input type="text" class="form-control" name="horse_wins" value="{{$horse->wins}}">
+                        <small class="form-text text-muted">Wins.</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label>About:</label>
+                        <textarea type="text" class="form-control" name="horse_about" value="{{$horse->about}}"></textarea>
+                        <small class="form-text text-muted">About.</small>
+                     </div>
+
                     @csrf
                     <button type="submit" class="btn btn-light">EDIT</button>
                 </form>

@@ -8,12 +8,28 @@
 
                <div class="card-body">
                     <form method="POST" action="{{route('better.store')}}">
-                        Name: <input type="text" name="better_name">
-                        Surname: <input type="text" name="better_surname">
-                        Bet: <input type="text" name="better_bet">
+                        <div class="form-group">
+                            <label>Name:</label>
+                            <input type="text" class="form-control" name="better_name">
+                            <small class="form-text text-muted">Name.</small>
+                          </div>
+
+                          <div class="form-group">
+                            <label>Surname:</label>
+                            <input type="text" class="form-control" name="better_surname">
+                            <small class="form-text text-muted">Surname.</small>
+                          </div>
+
+                          <div class="form-group">
+                            <label>Bet:</label>
+                            <input type="text" class="form-control" name="better_bet">
+                            <small class="form-text text-muted">Bet.</small>
+                          </div>
+                        
+
                         <select name="horse_id">
                             @foreach ($horses as $horse)
-                                <option value="{{$horse->id}}">{{$horse->name}} {{$horse->runs}}</option>
+                                <option value="{{$horse->id}}">{{$horse->name}}</option>
                             @endforeach
                     </select>
                         @csrf
