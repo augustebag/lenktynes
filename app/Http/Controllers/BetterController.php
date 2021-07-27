@@ -69,7 +69,9 @@ class BetterController extends Controller
      */
     public function edit(Better $better)
     {
-        //
+        $horses = Horse::all();
+        return view('better.edit', ['better' => $better, 'horses' => $horses]);
+
     }
 
     /**
@@ -81,7 +83,12 @@ class BetterController extends Controller
      */
     public function update(Request $request, Better $better)
     {
-        //
+        $better->name = $request->better_name;
+        $better->surname = $request->better_surname;
+        $better->bet = $request->better_bet;
+        $better->horse_id = $request->horse_id;
+        $better->save();
+        return redirect()->route('better.index');
     }
 
     /**
@@ -92,6 +99,8 @@ class BetterController extends Controller
      */
     public function destroy(Better $better)
     {
-        //
+        $better->delete();
+         return redirect()->route('better.index');
+
     }
 }

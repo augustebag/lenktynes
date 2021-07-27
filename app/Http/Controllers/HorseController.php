@@ -94,15 +94,13 @@ class HorseController extends Controller
      */
     public function destroy(Horse $horse)
     {
-        $horse->delete();
-       return redirect()->route('horse.index');
 
-        // if ($horse->MechanicBetters->count()) {
-        //     return redirect()->back()->with('success_message', 'Trinti negalima, nes turi nebaigtu darbu');
-        // }
+        if ($horse->MechanicBetters->count()) {
+             return redirect()->back()->with('success_message', 'Trinti negalima, nes turi nebaigtu darbu');
+         }
         
-        // $horse->delete();
-        // return redirect()->route('horse.index')->with('success_message', 'Sekmingai ištrintas.');
+         $horse->delete();
+         return redirect()->route('horse.index')->with('success_message', 'Sekmingai ištrintas.');
 
     }
 }
