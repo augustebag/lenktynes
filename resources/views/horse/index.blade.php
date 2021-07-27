@@ -7,17 +7,26 @@
                <div class="card-header">Horses</div>
 
                <div class="card-body">
+                <ul class="list-group">
                   @foreach ($horses as $horse)
+                  <li class="list-group-item">
+                    <div class="list-container">
+                        <div class="list-container__content">
+                        </div>
+                        <div class="list-container__buttons">
+
                     <a href="{{route('horse.edit',$horse)}}">{{$horse->name}} {{$horse->runs}}</a>
                     <form method="POST" action="{{route('horse.destroy', $horse)}}">
                       @csrf
-                      <button type="submit" class="btn btn-warning">DELETE</button>
+                      <button type="submit" class="btn btn-danger">DELETE</button>
                     </form>
-                    <br>
-                  @endforeach
+                  </div>
                 </div>
-              </div>
-          </div>
+               </li>
+               @endforeach
+             </div>
+           </div>
+        </div>
       </div>
     </div>
 @endsection

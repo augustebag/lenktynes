@@ -30,7 +30,7 @@
 
                     <div class="form-group">
                         <label>About:</label>
-                        <textarea type="text" class="form-control" name="horse_about" value="{{$horse->about}}"></textarea>
+                        <textarea type="text" class="form-control" name="horse_about" value="{{$horse->about}}" id="summernote"></textarea>
                         <small class="form-text text-muted">About.</small>
                      </div>
 
@@ -42,5 +42,11 @@
     </div>
 </div>
 </div>
+<script>
+    $(document).ready(function() {
+       $('#summernote').summernote();
+     });
+    </script>
+    
 @endsection
                 
