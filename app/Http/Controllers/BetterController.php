@@ -46,7 +46,7 @@ class BetterController extends Controller
         $better->bet = $request->better_bet;
         $better->horse_id = $request->horse_id;
         $better->save();
-        return redirect()->route('better.index');
+        return redirect()->route('better.index')->with('success_message', 'Sekmingai įrašytas.');
 
     }
 
@@ -88,7 +88,7 @@ class BetterController extends Controller
         $better->bet = $request->better_bet;
         $better->horse_id = $request->horse_id;
         $better->save();
-        return redirect()->route('better.index');
+        return redirect()->route('better.index')->with('success_message', 'Sėkmingai pakeistas.');
     }
 
     /**

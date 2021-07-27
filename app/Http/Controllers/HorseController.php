@@ -43,7 +43,7 @@ class HorseController extends Controller
         $horse->wins = $request->horse_wins;
         $horse->about = $request->horse_about;
         $horse->save();
-        return redirect()->route('horse.index');
+        return redirect()->route('horse.index')->with('success_message', 'Sekmingai įrašytas.');
 
     }
 
@@ -83,7 +83,7 @@ class HorseController extends Controller
         $horse->wins = $request->horse_wins;
         $horse->about = $request->horse_about;
         $horse->save();
-        return redirect()->route('horse.index');
+        return redirect()->route('horse.index')->with('success_message', 'Sėkmingai pakeistas.');
     }
 
     /**
