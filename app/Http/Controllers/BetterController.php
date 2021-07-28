@@ -14,12 +14,42 @@ class BetterController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $betters = Better::all();
-        return view('better.index', ['betters' => $betters]);
-
-    }
+    public function index(Request $request)
+    {       
+        // $betters = Better::all();
+        
+        $dir = 'asc';
+        $sort = 'name';
+        
+        if ($request->sort_by && $request->dir) {
+            if ('name' == $request->sort_by && 'asc' == $request->dir) {
+                $betters = Better::orderBy('name')->get();
+            } elseif ('name' == $request->sort_by && 'desc' == $request->dir) {
+                $betters = Better::orderBy('name')->get();
+                $dir = 'desc';
+            } elseif ('surname' == $request->sort_by && 'asc' == $request->dir) {
+                $betters = Better::orderBy('surname')->get();
+                $dir = 'surname';
+            } elseif ('surname' == $request->sort_by && 'desc' == $request->dir) {
+                $betters = Better::orderBy('surname')->get();
+                $dir = 'desc';
+                $dir = 'surname';
+            } 
+            else { $betters = Better::all();
+            }
+            
+        } else {
+            $betters = Better::all();
+        }
+        
+        return view('better.index', 
+        ['betters' => $betters,
+        'dir' => $dir,
+        'sort' => $sort,
+    ]);
+    
+    // return view('better.index', ['betters' => $betters]);
+}
 
     /**
      * Show the form for creating a new resource.
