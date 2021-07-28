@@ -20,6 +20,8 @@ class BetterController extends Controller
         
         $dir = 'asc';
         $sort = 'name';
+        $horses = Horse::all();
+        $defaultHorse = 0;
         
         if ($request->sort_by && $request->dir) {
             if ('name' == $request->sort_by && 'asc' == $request->dir) {
@@ -38,14 +40,20 @@ class BetterController extends Controller
             else { $betters = Better::all();
             }
             
+        }  elseif ($request->horse_id) {
+            $betters = Better::where('horse_id', (int)$request->horse_id)->get();
+            $defaultHorse = (int)$request->horse_id;
         } else {
             $betters = Better::all();
         }
+
         
         return view('better.index', 
         ['betters' => $betters,
         'dir' => $dir,
         'sort' => $sort,
+        'horses' => $horses,
+        'defaultHorse' => $defaultHorse,
     ]);
     
     // return view('better.index', ['betters' => $betters]);
