@@ -10,19 +10,19 @@
                     <form method="POST" action="{{route('better.update',[$better])}}">
                         <div class="form-group">
                             <label>Name:</label>
-                            <input type="text" class="form-control" name="better_name" value="{{$better->name}}">
+                            <input type="text" class="form-control" name="better_name" value="{{old('better_name', $better->name)}}">
                             <small class="form-text text-muted">Name.</small>
                           </div>
 
                           <div class="form-group">
                             <label>Surname:</label>
-                            <input type="text" class="form-control" name="better_surname" value="{{$better->surname}}">
+                            <input type="text" class="form-control" name="better_surname" value="{{old('better_surname', $better->surname)}}">
                             <small class="form-text text-muted">Surname.</small>
                           </div>
 
                           <div class="form-group">
                             <label>Bet:</label>
-                            <input type="text" class="form-control" name="better_bet" value="{{$better->bet}}">
+                            <input type="text" class="form-control" name="better_bet" value="{{old('better_bet', $better->bet)}}">
                             <small class="form-text text-muted">Bet.</small>
                           </div>
 
@@ -42,4 +42,5 @@
     </div>
   </div>
 @endsection
+@section('title') Betters @endsection
               

@@ -12,30 +12,30 @@
 
                     <div class="form-group">
                         <label>Name:</label>
-                        <input type="text" class="form-control" name="horse_name" value="{{$horse->name}}">
+                        <input type="text" class="form-control" name="horse_name" value="{{old('horse_name', $horse->name)}}">
                         <small class="form-text text-muted">Name.</small>
                       </div>
 
                     <div class="form-group">
                         <label>Runs:</label>
-                        <input type="text" class="form-control" name="horse_runs" value="{{$horse->runs}}">
+                        <input type="text" class="form-control" name="horse_runs" value="{{old('horse_runs', $horse->runs)}}">
                         <small class="form-text text-muted">Runs.</small>
                      </div>
 
                     <div class="form-group">
                         <label>Wins:</label>
-                        <input type="text" class="form-control" name="horse_wins" value="{{$horse->wins}}">
+                        <input type="text" class="form-control" name="horse_wins" value="{{old('horse_wins', $horse->wins)}}">
                         <small class="form-text text-muted">Wins.</small>
                     </div>
 
                     <div class="form-group">
                         <label>About:</label>
-                        <textarea type="text" class="form-control" name="horse_about" value="{{$horse->about}}" id="summernote"></textarea>
+                        <textarea type="text" class="form-control" name="horse_about" value="{{old('horse_about', $horse->about)}}"" id="summernote"></textarea>
                         <small class="form-text text-muted">About.</small>
                      </div>
 
                     @csrf
-                    <button type="submit" class="btn btn-outline-dark btn-sm">Edit</button>
+                    <button type="submit" class="btn btn-outline-dark btn-sm">EDIT</button>
                 </form>
             </div>
         </div>
@@ -49,4 +49,4 @@
     </script>
     
 @endsection
-                
+@section('title') Horses @endsection

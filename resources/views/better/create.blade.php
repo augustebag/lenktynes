@@ -10,19 +10,19 @@
                     <form method="POST" action="{{route('better.store')}}">
                         <div class="form-group">
                             <label>Name:</label>
-                            <input type="text" class="form-control" name="better_name">
+                            <input type="text" class="form-control" name="better_name" value="{{old('better_name')}}">
                             <small class="form-text text-muted">Name.</small>
                           </div>
 
                           <div class="form-group">
                             <label>Surname:</label>
-                            <input type="text" class="form-control" name="better_surname">
+                            <input type="text" class="form-control" name="better_surname" value="{{old('better_surname')}}">
                             <small class="form-text text-muted">Surname.</small>
                           </div>
 
                           <div class="form-group">
                             <label>Bet:</label>
-                            <input type="text" class="form-control" name="better_bet">
+                            <input type="text" class="form-control" name="better_bet" value="{{old('better_bet')}}">
                             <small class="form-text text-muted">Bet.</small>
                           </div>
                         
@@ -41,4 +41,4 @@
     </div>
   </div>
 @endsection
-          
+@section('title') Betters @endsection

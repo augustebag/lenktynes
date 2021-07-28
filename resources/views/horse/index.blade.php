@@ -33,3 +33,4 @@
   </div>
   @endsection
 
+  @section('title') Horses @endsection

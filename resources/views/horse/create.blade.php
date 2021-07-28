@@ -13,25 +13,25 @@
 
                     <div class="form-group">
                         <label>Name:</label>
-                        <input type="text" class="form-control" name="horse_name">
+                        <input type="text" class="form-control" name="horse_name" value="{{old('horse_name')}}">
                         <small class="form-text text-muted">Name.</small>
                       </div>
 
                     <div class="form-group">
                         <label>Runs:</label>
-                        <input type="text" class="form-control" name="horse_runs">
+                        <input type="text" class="form-control" name="horse_runs" value="{{old('horse_runs')}>
                         <small class="form-text text-muted">Runs.</small>
                      </div>
 
                     <div class="form-group">
                         <label>Wins:</label>
-                        <input type="text" class="form-control" name="horse_wins">
+                        <input type="text" class="form-control" name="horse_wins" value="{{old('horse_wins')}>
                         <small class="form-text text-muted">Wins.</small>
                     </div>
 
                     <div class="form-group">
                         <label>About:</label>
-                        <textarea type="text" class="form-control" name="horse_about" id="summernote"></textarea>
+                        <textarea type="text" class="form-control" name="horse_about" id="summernote" value="{{old('horse_about')}></textarea>
                         <small class="form-text text-muted">About.</small>
                      </div>
 
@@ -51,3 +51,4 @@
     </script>
     
 @endsection
+@section('title') Horses @endsection
