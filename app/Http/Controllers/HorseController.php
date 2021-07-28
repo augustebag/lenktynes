@@ -95,7 +95,7 @@ class HorseController extends Controller
     public function destroy(Horse $horse)
     {
 
-        if ($horse->MechanicBetters->count()) {
+        if ($horse->HorseBetters->count()) {
              return redirect()->back()->with('success_message', 'Trinti negalima, nes turi nebaigtu darbu');
          }
         

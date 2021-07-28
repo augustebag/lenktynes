@@ -36,7 +36,7 @@
                      </div>
 
                     @csrf
-                    <button type="submit" class="btn btn-light">ADD</button>
+                    <button type="submit" class="btn btn-outline-dark btn-sm">ADD</button>
 
                 </form>
                 </div>
