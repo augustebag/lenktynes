@@ -17,9 +17,9 @@ class CreateHorsesTable extends Migration
             $table->id();
             $table->string('name', 100);
             $table->integer('runs');
+            $table->string('photo', 100)->nullable();
             $table->integer('wins');
             $table->text('about');
-            $table->string('photo', 100) ->nullable();
             $table->timestamps();
         });
     }

@@ -10,6 +10,11 @@ use PDF;
 
 class BetterController extends Controller
 {
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
+    
     /**
      * Display a listing of the resource.
      *
@@ -28,15 +33,15 @@ class BetterController extends Controller
             if ('name' == $request->sort_by && 'asc' == $request->dir) {
                 $betters = Better::orderBy('name')->paginate(15)->withQueryString();
             } elseif ('name' == $request->sort_by && 'desc' == $request->dir) {
-                $betters = Better::orderBy('name')->paginate(15)->withQueryString();
+                $betters = Better::orderBy('name', 'desc')->paginate(15)->withQueryString();
                 $dir = 'desc';
-            } elseif ('surname' == $request->sort_by && 'asc' == $request->dir) {
-                $betters = Better::orderBy('surname')->paginate(15)->withQueryString();
-                $dir = 'surname';
-            } elseif ('surname' == $request->sort_by && 'desc' == $request->dir) {
-                $betters = Better::orderBy('surname')->paginate(15)->withQueryString();
+            } elseif ('bet' == $request->sort_by && 'asc' == $request->dir) {
+                $betters = Better::orderBy('bet')->paginate(15)->withQueryString();
+                $sort = 'bet';
+            } elseif ('bet' == $request->sort_by && 'desc' == $request->dir) {
+                $betters = Better::orderBy('bet', 'desc')->paginate(15)->withQueryString();
                 $dir = 'desc';
-                $dir = 'surname';
+                $sort = 'bet';
             } 
             else { $betters = Better::paginate(15)->withQueryString();
             } 
@@ -49,8 +54,8 @@ class BetterController extends Controller
         }
 
         
-        return view('better.index', 
-        ['betters' => $betters,
+        return view('better.index', [
+        'betters' => $betters,
         'dir' => $dir,
         'sort' => $sort,
         'horses' => $horses,
@@ -85,8 +90,7 @@ class BetterController extends Controller
            'better_name' => ['required', 'min:3', 'max:64', 'alpha'],
            'better_surname' => ['required', 'min:3', 'max:64', 'alpha'],
            'better_bet' => ['required', 'min:1', 'numeric'],
-       ],
-
+       ]
        );
        if ($validator->fails()) {
            $request->flash();

@@ -10,19 +10,23 @@
         <fieldset>
             <legend>Sort by: </legend>
             <div>
-            <label>Name </label><input type="radio" name="sort_by" value="name" checked>
+              <label>Name </label>
+              <input type="radio" name="sort_by" value="name" @if('name'==$sort) checked @endif>
             </div>
             <div>
-            <label>Runs </label><input type="radio" name="sort_by" value="runs">
+              <label>Runs </label>
+              <input type="radio" name="sort_by" value="runs" @if('runs'==$sort) checked @endif>
             </div>
         </fieldset>
         <fieldset>
             <legend>Direction: </legend>
             <div>
-            <label>Up </label><input type="radio" name="dir" value="esc" checked>
+              <label>Up </label>
+              <input type="radio" name="dir" value="asc" @if('asc'==$dir) checked @endif>
             </div>
             <div>
-            <label>Down </label><input type="radio" name="dir" value="desc">
+              <label>Down </label>
+              <input type="radio" name="dir" value="desc" @if('desc'==$dir) checked @endif>
             </div>
         </fieldset>
         <button type="submit" class="btn btn-outline-dark btn-sm">Sort</button>
@@ -35,13 +39,13 @@
           <ul class="list-group">
             <li class="list-group-item">
               <div class="list-container">
-                <div class="list-container__content">
                   <div class="list-container__photo">
                   @if($horse->photo)
                     <img src="{{$horse->photo}}">
                     @else
                   <img src="{{asset('no-img.png')}}">
                   @endif
+                <div class="list-container__content">
                {{-- <img class="card-img-top" src="..." alt="Card image cap"> --}}
                   <span class="list-container__content__horse">Name: {{$horse->name}}<br> Runs: {{$horse->runs}}<br> Wins: {{$horse->wins}}<br></span>
                   <span class="card-text"> About: {{$horse->about}} </span>

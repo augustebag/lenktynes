@@ -36,9 +36,9 @@ class DatabaseSeeder extends Seeder
             DB::table('horses')->insert([
                 'name' => $name[rand(0, count($name) -1)], 
                 'runs' => rand(10, 50),
+                'photo' => rand(0, 2) ? $faker->imageUrl(200, 300) : null,
                 'wins' => rand(1, 20),
                 'about' => $faker->realText(300, 5),
-                'photo' => rand(0, 3) ? $faker->imageUrl(200, 300) : null,
             ]);
         }
 

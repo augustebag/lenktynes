@@ -36,12 +36,11 @@
                             @else
                             <img src="{{asset('no-img.png')}}">
                             @endif
+                        </div>
                         <label>Photo</label>
                         <input type="file" class="form-control" name="horse_photo">
                         <small class="form-text text-muted">Upload photo</small>
                       </div>
-                    </div>
-
                     <div class="form-group">
                         <label>About:</label>
                         <textarea type="text" class="form-control" name="horse_about" value="{{old('horse_about', $horse->about)}}"" id="summernote"></textarea>

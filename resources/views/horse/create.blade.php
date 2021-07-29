@@ -6,9 +6,7 @@
        <div class="col-md-8">
            <div class="card">
                <div class="card-header">New Horse</div>
-
                <div class="card-body">
-
                 <form method="POST" action="{{route('horse.store')}}" enctype="multipart/form-data">
 
                     <div class="form-group">
@@ -36,13 +34,10 @@
                      </div>
 
                      <div class="form-group">
-                    <div class="small-photo">
                         <label>Photo</label>
                         <input type="file" class="form-control" name="horse_photo">
                         <small class="form-text text-muted">Upload photo</small>
                       </div>
-                    </div>
-
 
                     @csrf
                     <button type="submit" class="btn btn-outline-dark btn-sm">ADD</button>

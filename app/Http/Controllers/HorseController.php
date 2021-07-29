@@ -17,26 +17,26 @@ class HorseController extends Controller
     {
         $dir = 'asc';
         $sort = 'name';
-        $horses = Horse::all();
         $defaultHorse = 0;
+        $horses = Horse::all();
         
         if ($request->sort_by && $request->dir) {
             if ('name' == $request->sort_by && 'asc' == $request->dir) {
                 $horses = Horse::orderBy('name')->paginate(15)->withQueryString();
             } elseif ('name' == $request->sort_by && 'desc' == $request->dir) {
-                $horses = Horse::orderBy('name')->paginate(15)->withQueryString();
+                $horses = Horse::orderBy('name', 'desc')->paginate(15)->withQueryString();
                 $dir = 'desc';
             } elseif ('runs' == $request->sort_by && 'asc' == $request->dir) {
                 $horses = Horse::orderBy('runs')->paginate(15)->withQueryString();
-                $dir = 'runs';
+                $sort = 'runs';
             } elseif ('runs' == $request->sort_by && 'desc' == $request->dir) {
-                $horses = Horse::orderBy('runs')->paginate(15)->withQueryString();
+                $horses = Horse::orderBy('runs', 'desc')->paginate(15)->withQueryString();
                 $dir = 'desc';
-                $dir = 'runs';
+                $sort = 'runs';
             } 
             else { $horses = Horse::paginate(15)->withQueryString();
             } 
-            
+            //FILTRAVIMAS
         }  elseif ($request->horse_id) {
             $horses = Horse::where('horse_id', (int)$request->horse_id)->paginate(15)->withQueryString();
             $defaultHorse = (int)$request->horse_id;
@@ -45,16 +45,13 @@ class HorseController extends Controller
         }
 
         
-        return view('horse.index', 
-        ['horses' => $horses,
+        return view('horse.index', [
+        'horses' => $horses,
         'dir' => $dir,
         'sort' => $sort,
         'horses' => $horses,
         'defaultHorse' => $defaultHorse,
     ]);
-    
-        $horses = Horse::all();
-        return view('horse.index', ['horses' => $horses]);
 
     }
 
@@ -82,9 +79,8 @@ class HorseController extends Controller
            'horse_runs' => ['required', 'numeric', 'gt:0'],
            'horse_wins' => ['required', 'numeric', 'gt:0'],
            'horse_about' => ['required'],
-       ],
-
-       );
+       ]
+);
        if ($validator->fails()) {
            $request->flash();
            return redirect()->back()->withErrors($validator);
@@ -156,6 +152,7 @@ class HorseController extends Controller
                     unlink($path);
                 }
             }
+            $horse->photo = null;
         }
 
        if ($request->has('horse_photo')) {
@@ -163,12 +160,11 @@ class HorseController extends Controller
         if ($horse->photo) {
             $imageName = explode('/', $horse->photo);
             $imageName = array_pop($imageName);
-            $path = public_path() . '/horses-img' . $imageName;
+            $path = public_path() . '/horses-img/' . $imageName;
             if (file_exists($path)) {
                 unlink($path);
             }
         }
-        $horse->photo = null;
     }
 
         $photo = $request->file('horse_photo');
@@ -189,9 +185,8 @@ class HorseController extends Controller
            'horse_runs' => ['required', 'numeric', 'gt:0'],
            'horse_wins' => ['required', 'numeric', 'gt:0'],
            'horse_about' => ['required'],
-       ],
-
-       );
+       ]
+   );
        if ($validator->fails()) {
            $request->flash();
            return redirect()->back()->withErrors($validator);
@@ -216,7 +211,7 @@ class HorseController extends Controller
         if ($horse->photo) {
             $imageName = explode('/', $horse->photo);
             $imageName = array_pop($imageName);
-            $path = public_path() . '/horses-img' . $imageName;
+            $path = public_path() . '/horses-img/' . $imageName;
             if (file_exists($path)) {
                 unlink($path);
             }

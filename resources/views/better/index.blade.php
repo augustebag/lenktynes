@@ -11,19 +11,23 @@
                 <fieldset>
                     <legend>Sort by: </legend>
                     <div>
-                    <label>Name </label><input type="radio" name="sort_by" value="name" @if('name'== $sort) checked @endif>
+                      <label>Name </label>
+                      <input type="radio" name="sort_by" value="name" @if('name'== $sort) checked @endif>
                     </div>
                     <div>
-                    <label>Surname </label><input type="radio" name="sort_by" value="surname" @if('surname'== $sort) checked @endif>
+                      <label>Surname </label>
+                      <input type="radio" name="sort_by" value="surname" @if('surname'== $sort) checked @endif>
                     </div>
                 </fieldset>
                 <fieldset>
                     <legend>Direction: </legend>
                     <div>
-                    <label>Up </label><input type="radio" name="dir" value="esc" @if('dir'== $dir) checked @endif>
+                      <label>Up </label>
+                      <input type="radio" name="dir" value="asc" @if('asc'== $dir) checked @endif>
                     </div>
                     <div>
-                    <label>Down </label><input type="radio" name="dir" @if('dir'== $dir) checked @endif>
+                      <label>Down </label>
+                      <input type="radio" name="dir" value="desc" @if('desc'== $dir) checked @endif>
                     </div>
                 </fieldset>
                 <button type="submit" class="btn btn-outline-dark btn-sm">Sort</button>
@@ -37,14 +41,15 @@
                       <select class="horse_id" class="form-control">
                           @foreach($horses as $horse)
                           <option value="{{$horse->id}}" @if($defaultHorse == $horse->id) selected @endif>
-                            {{$horse->name}} {{$horse->bet}}
+                            {{$horse->name}} 
+                          </option>
                           @endforeach
                       </select>
+                      <small class="form-text text-muted">Select Better from the list.</small>
                   </div>
               </fieldset>
-              <button type="submit" class="btn btn-primary">Filter</button>
-              <a href="{{route('better.index')}}" class="btn btn-danger">Clear</a>
-
+              <button type="submit" class="btn btn-outline-dark btn-sm">Filter</button>
+              <a href="{{route('better.index')}}" class="btn btn-outline-danger btn-sm">Clear</a>
           </form>
 
             </div>
@@ -59,14 +64,14 @@
                           <span class="list-container__content__better">{{$better->name}} {{$better->surname}} <br></span>
                             <span class="list-container__content__horse"> Horse: {{$better->betterHorse->name}}<br> Bet: {{$better->bet}}</span>
                         </div>
-                        </div>
                         <div class="list-container__buttons">
                           <form method="POST" action="{{route('better.destroy', [$better])}}">
                             @csrf
                             <a href="{{route('better.show',[$better])}}" class="btn btn-outline-dark btn-sm">More info</a>
                             <a href="{{route('better.edit',[$better])}}" class="btn btn-outline-dark btn-sm">Edit</a>
-                          <button type="submit" class="btn btn-outline-danger btn-sm">DELETE</button>
+                            <button type="submit" class="btn btn-outline-danger btn-sm">DELETE</button>
                           </form>
+                        </div>
                         </div>
                     </div>
                   </li>
