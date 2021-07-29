@@ -10010,9 +10010,22 @@ body {
   background-color: #ffffff63;
 }
 
-.list-container__photo img {
-  width: 200px;
+.list-container__photo {
+  width: 50px;
   height: auto;
+}
+.list-container__photo img {
+  width: 50px;
+  height: auto;
+}
+
+legend {
+  font-size: 10px;
+}
+
+.sort {
+  font-size: 10px;
+  color: honeydew;
 }
 
 .small-photo img {
