@@ -32,6 +32,16 @@
         <button type="submit" class="btn btn-outline-dark btn-sm">Sort</button>
         <a href="{{route('horse.index')}}" class="btn btn-outline-danger btn-sm">Clear</a>
     </form>
+    <form action="{{route('horse.index')}}" method="get" class="sort-form">
+      <fieldset>
+          <legend>Search: </legend>
+          <div class="form-group">
+              <input type="search" class="form-control mr-sm-2" placeholder="Search" aria-label="Search" name="s">
+          </div>
+      </fieldset>
+      <button class="btn btn-sm btn-outline-dark my-2 my-sm-0" type="submit">Search</button>
+      <a href="{{route('horse.index')}}" class="btn btn-sm btn-outline-danger my-2 my-sm-0">Clear</a>
+  </form>
     </div>
       
         @foreach ($horses as $horse)

@@ -34,26 +34,34 @@
                 <a href="{{route('better.index')}}" class="btn btn-outline-danger btn-sm">Clear</a>
             </form>
 
+              <form action="{{route('better.index')}}" method="get" class="sort-form">
+                <fieldset>
+                    <legend>Filter by: </legend>
+                    <div class="form-group">
+                        <select class="horse_id" class="form-control">
+                            @foreach($horses as $horse)
+                            <option value="{{$horse->id}}" @if($defaultHorse == $horse->id) selected @endif>
+                              {{$horse->name}} 
+                            </option>
+                            @endforeach
+                        </select>
+                        <small class="form-text text-muted">Select Better from the list.</small>
+                    </div>
+                </fieldset>
+                <button type="submit" class="btn btn-outline-dark btn-sm">Filter</button>
+                <a href="{{route('better.index')}}" class="btn btn-outline-danger btn-sm">Clear</a>
+            </form>
             <form action="{{route('better.index')}}" method="get" class="sort-form">
               <fieldset>
-                  <legend>Filter by: </legend>
+                  <legend>Search: </legend>
                   <div class="form-group">
-                      <select class="horse_id" class="form-control">
-                          @foreach($horses as $horse)
-                          <option value="{{$horse->id}}" @if($defaultHorse == $horse->id) selected @endif>
-                            {{$horse->name}} 
-                          </option>
-                          @endforeach
-                      </select>
-                      <small class="form-text text-muted">Select Better from the list.</small>
+                      <input type="search" class="form-control mr-sm-2" placeholder="Search" aria-label="Search" name="s">
                   </div>
               </fieldset>
-              <button type="submit" class="btn btn-outline-dark btn-sm">Filter</button>
-              <a href="{{route('better.index')}}" class="btn btn-outline-danger btn-sm">Clear</a>
+              <button class="btn btn-sm btn-outline-secondary my-2 my-sm-0" type="submit">Search</button>
+              <a href="{{route('better.index')}}" class="btn btn-sm btn-outline-danger my-2 my-sm-0">Clear</a>
           </form>
-
             </div>
-
 
                @foreach ($betters as $better)
                <div class="card-body">

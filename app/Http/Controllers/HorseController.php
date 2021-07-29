@@ -19,6 +19,7 @@ class HorseController extends Controller
         $sort = 'name';
         $defaultHorse = 0;
         $horses = Horse::all();
+        $s = '';
         
         if ($request->sort_by && $request->dir) {
             if ('name' == $request->sort_by && 'asc' == $request->dir) {
@@ -34,13 +35,27 @@ class HorseController extends Controller
                 $dir = 'desc';
                 $sort = 'runs';
             } 
-            else { $horses = Horse::paginate(15)->withQueryString();
+                else { $horses = Horse::paginate(15)->withQueryString();
             } 
             //FILTRAVIMAS
         }  elseif ($request->horse_id) {
             $horses = Horse::where('horse_id', (int)$request->horse_id)->paginate(15)->withQueryString();
             $defaultHorse = (int)$request->horse_id;
-        } else {
+        } elseif ($request->horse_id) {
+            $betters = Better::where('horse_id', (int)$request->horse_id)->paginate(15)->withQueryString();
+            $defaultHorse = (int)$request->horse_id;
+        } 
+        
+        elseif ($request->s) {
+            $horses = Horse::where('name', 'like', '%'.$request->s.'%')->paginate(15)->withQueryString();
+            $s = $request->s;
+        }
+        elseif ($request->do_search) {
+            $horses = Horse::where('name', 'like', '')->paginate(15)->withQueryString();
+
+        }
+        
+            else {
             $horses = Horse::paginate(15)->withQueryString();
         }
 
@@ -51,6 +66,7 @@ class HorseController extends Controller
         'sort' => $sort,
         'horses' => $horses,
         'defaultHorse' => $defaultHorse,
+        's' => $s,
     ]);
 
     }

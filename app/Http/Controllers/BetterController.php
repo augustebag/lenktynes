@@ -28,6 +28,7 @@ class BetterController extends Controller
         $sort = 'name';
         $horses = Horse::all();
         $defaultHorse = 0;
+        $s = '';
         
         if ($request->sort_by && $request->dir) {
             if ('name' == $request->sort_by && 'asc' == $request->dir) {
@@ -43,13 +44,24 @@ class BetterController extends Controller
                 $dir = 'desc';
                 $sort = 'bet';
             } 
-            else { $betters = Better::paginate(15)->withQueryString();
+                else { $betters = Better::paginate(15)->withQueryString();
             } 
-            
-        }  elseif ($request->horse_id) {
+
+        }  //FILTRAVIMAS
+        elseif ($request->horse_id) {
             $betters = Better::where('horse_id', (int)$request->horse_id)->paginate(15)->withQueryString();
             $defaultHorse = (int)$request->horse_id;
-        } else {
+        } 
+        
+        elseif ($request->s) {
+            $betters = Better::where('name', 'like', '%'.$request->s.'%')->paginate(15)->withQueryString();
+            $s = $request->s;
+        }
+        elseif ($request->do_search) {
+            $betters = Better::where('name', 'like', '')->paginate(15)->withQueryString();
+
+        }
+        else {
             $betters = Better::paginate(15)->withQueryString();
         }
 
@@ -60,6 +72,7 @@ class BetterController extends Controller
         'sort' => $sort,
         'horses' => $horses,
         'defaultHorse' => $defaultHorse,
+        's' => $s,
     ]);
     
     // return view('better.index', ['betters' => $betters]);
