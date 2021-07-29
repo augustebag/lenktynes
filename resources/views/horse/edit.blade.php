@@ -8,7 +8,7 @@
                <div class="card-header">Edit</div>
 
                <div class="card-body">
-                <form method="POST" action="{{route('horse.update',$horse)}}">
+                <form method="POST" action="{{route('horse.update',$horse)}}" enctype="multipart/form-data">
 
                     <div class="form-group">
                         <label>Name:</label>
@@ -26,6 +26,20 @@
                         <label>Wins:</label>
                         <input type="text" class="form-control" name="horse_wins" value="{{old('horse_wins', $horse->wins)}}">
                         <small class="form-text text-muted">Wins.</small>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="small-photo">
+                            @if($horse->photo)
+                            <img src="{{$horse->photo}}">
+                            <label>Delete photo <input type="checkbox" name="delete_horse_photo"></label>
+                            @else
+                            <img src="{{asset('no-img.png')}}">
+                            @endif
+                        <label>Photo</label>
+                        <input type="file" class="form-control" name="horse_photo">
+                        <small class="form-text text-muted">Upload photo</small>
+                      </div>
                     </div>
 
                     <div class="form-group">

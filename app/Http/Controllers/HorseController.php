@@ -90,6 +90,22 @@ class HorseController extends Controller
            return redirect()->back()->withErrors($validator);
        }
 
+       $horse = new Horse;
+
+       if ($request->has('horse_photo')) {
+        $photo = $request->file('horse_photo');
+        $imageName = 
+        $request->horse_name. '-' .
+        $request->horse_runs. '-' .
+        time(). '.' .
+        $photo->getClientOriginalExtension();
+        $path = public_path() . '/horses-img/'; // serverio vidinis kelias
+        $url = asset('horses-img/'.$imageName); // url narsyklei (isorinis)
+        $photo->move($path, $imageName); // is serverio tmp ===> i public folderi
+        $horse->photo = $url;
+    }
+
+
         $horse = new Horse;
         $horse->name = $request->horse_name;
         $horse->runs = $request->horse_runs;
@@ -131,6 +147,42 @@ class HorseController extends Controller
      */
     public function update(Request $request, Horse $horse)
     {
+        if ($request->has('delete_horse_photo')) {
+            if ($horse->photo) {
+                $imageName = explode('/', $horse->photo);
+                $imageName = array_pop($imageName);
+                $path = public_path() . '/horses-img' . $imageName;
+                if (file_exists($path)) {
+                    unlink($path);
+                }
+            }
+        }
+
+       if ($request->has('horse_photo')) {
+
+        if ($horse->photo) {
+            $imageName = explode('/', $horse->photo);
+            $imageName = array_pop($imageName);
+            $path = public_path() . '/horses-img' . $imageName;
+            if (file_exists($path)) {
+                unlink($path);
+            }
+        }
+        $horse->photo = null;
+    }
+
+        $photo = $request->file('horse_photo');
+        $imageName = 
+        $request->horse_name. '-' .
+        $request->horse_runs. '-' .
+        time(). '.' .
+        $photo->getClientOriginalExtension();
+        $path = public_path() . '/horses-img/'; // serverio vidinis kelias
+        $url = asset('horses-img/'.$imageName); // url narsyklei (isorinis)
+        $photo->move($path, $imageName); // is serverio tmp ===> i public folderi
+        $horse->photo = $url;
+    
+
         $validator = Validator::make($request->all(),
        [
            'horse_name' => ['required', 'min:2', 'max:64', 'alpha'],
@@ -152,6 +204,7 @@ class HorseController extends Controller
         return redirect()->route('horse.index')->with('success_message', 'Sėkmingai pakeistas.');
     }
 
+
     /**
      * Remove the specified resource from storage.
      *
@@ -160,6 +213,14 @@ class HorseController extends Controller
      */
     public function destroy(Horse $horse)
     {
+        if ($horse->photo) {
+            $imageName = explode('/', $horse->photo);
+            $imageName = array_pop($imageName);
+            $path = public_path() . '/horses-img' . $imageName;
+            if (file_exists($path)) {
+                unlink($path);
+            }
+        }
 
         if ($horse->HorseBetters->count()) {
              return redirect()->back()->with('success_message', 'Trinti negalima, nes turi nebaigtu darbu');

@@ -36,6 +36,12 @@
             <li class="list-group-item">
               <div class="list-container">
                 <div class="list-container__content">
+                  <div class="list-container__photo">
+                  @if($horse->photo)
+                    <img src="{{$horse->photo}}">
+                    @else
+                  <img src="{{asset('no-img.png')}}">
+                  @endif
                {{-- <img class="card-img-top" src="..." alt="Card image cap"> --}}
                   <span class="list-container__content__horse">Name: {{$horse->name}}<br> Runs: {{$horse->runs}}<br> Wins: {{$horse->wins}}<br></span>
                   <span class="card-text"> About: {{$horse->about}} </span>
@@ -45,6 +51,7 @@
                       @csrf
                     </form>
                 </div>
+              </div>
               </div>
             </div>
           </li>
