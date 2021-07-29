@@ -31,6 +31,9 @@ Route::group(['prefix' => 'horses'], function(){
     Route::post('update/{horse}', [HorseController::class, 'update'])->name('horse.update');
     Route::post('delete/{horse}', [HorseController::class, 'destroy'])->name('horse.destroy');
     Route::get('show/{horse}', [HorseController::class, 'show'])->name('horse.show');
+
+    Route::get('pdf/{horse}', [HorseController::class, 'pdf'])->name('horse.pdf'); 
+
  });
 
  Route::group(['prefix' => 'betters'], function(){

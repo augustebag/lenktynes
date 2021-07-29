@@ -20,7 +20,7 @@
                 <input type="radio" name="sort_by" value="surname" @if('surname'==$sort) checked @endif>
               </div>
             </fieldset>
-            <button type="submit" class="btn btn-outline-dark btn-sm">Sort</button>
+            <button type="submit" class="btn btn-sm btn-outline-dark">Sort</button>
             <a href="{{route('better.index')}}" class="btn btn-outline-danger btn-sm">Clear</a>
 
             <fieldset>
@@ -33,10 +33,10 @@
                   </option>
                   @endforeach
                 </select>
-                <small class="form-text text-muted">Select Better from the list.</small>
+                <small class="form-text text-muted">Select Horse from the list.</small>
               </div>
             </fieldset>
-            <button type="submit" class="btn btn-outline-dark btn-sm">Filter</button>
+            <button type="submit" class="btn btn-sm btn-outline-dark">Filter</button>
           </form>
           <form action="{{route('better.index')}}" method="get" class="sort-form">
             <fieldset>
@@ -72,8 +72,8 @@
                   <td class="list-container__buttons">
                     <form method="POST" action="{{route('better.destroy', [$better])}}">
                       @csrf
-                      <a href="{{route('better.show',[$better])}}" class="btn btn-outline-dark btn-sm">More info</a>
-                      <a href="{{route('better.edit',[$better])}}" class="btn btn-outline-dark btn-sm">Edit</a>
+                      <a href="{{route('better.show',[$better])}}" class="btn btn-outline-success btn-sm">More info</a>
+                      <a href="{{route('better.edit',[$better])}}" class="btn btn-outline-success btn-sm">Edit</a>
                       <button type="submit" class="btn btn-outline-danger btn-sm">DELETE</button>
                     </form>
                   </td>

@@ -20,7 +20,7 @@
               <input type="radio" name="sort_by" value="runs" @if('runs'==$sort) checked @endif>
             </div>
         </fieldset>
-        <button type="submit" class="btn btn-outline-dark btn-sm">Sort</button>
+        <button type="submit" class="btn btn-sm btn-outline-dark">Sort</button>
         <a href="{{route('horse.index')}}" class="btn btn-outline-danger btn-sm">Clear</a>
     </form>
     <form action="{{route('horse.index')}}" method="get" class="sort-form">
@@ -30,7 +30,7 @@
               <input type="search" class="form-control mr-sm-2" placeholder="Search" aria-label="Search" name="s">
           </div>
       </fieldset>
-      <button class="btn btn-sm btn-outline-dark my-2 my-sm-0" type="submit">Search</button>
+      <button class="btn btn-sm btn-outline-dark" type="submit">Search</button>
   </form>
     </div>
   </div>
@@ -62,8 +62,8 @@
           <td class="list-container__buttons">
                     <form method="POST" action="{{route('better.destroy', [$horse])}}">
                       @csrf
-                      <a href="{{route('horse.show',[$horse])}}" class="btn btn-outline-dark btn-sm">More info</a>
-                      <a href="{{route('horse.edit',[$horse])}}" class="btn btn-outline-dark btn-sm">Edit</a>
+                      <a href="{{route('horse.show',[$horse])}}" class="btn btn-outline-success btn-sm">More info</a>
+                      <a href="{{route('horse.edit',[$horse])}}" class="btn btn-outline-success btn-sm">Edit</a>
                       <button type="submit" class="btn btn-outline-danger btn-sm">DELETE</button>
                     </form>
                   </td>

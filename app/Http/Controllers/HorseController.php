@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Horse;
 use Illuminate\Http\Request;
 use Validator;
+use PDF;
 
 class HorseController extends Controller
 {
@@ -136,7 +137,8 @@ class HorseController extends Controller
      */
     public function show(Horse $horse)
     {
-        //
+        return view('horse.show', ['horse' => $horse]);
+
     }
 
     /**
@@ -241,4 +243,11 @@ class HorseController extends Controller
          return redirect()->route('horse.index')->with('success_message', 'Sekmingai ištrintas.');
 
     }
+
+    public function pdf(Horse $horse)
+    {
+        $pdf = PDF::loadView('horse.pdf', ['horse' => $horse]);
+        return $pdf->download($horse ->name.'.pdf');
+    }
+
 }
