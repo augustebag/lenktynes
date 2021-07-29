@@ -4,9 +4,31 @@ body {
 
 .card {
     background-color: #38c172;
+    border: none;
 }
 .card-header {
     background-color: #ffffff63;
+    .row {
+        display: inline-flex;
+        margin-left: 70px;
+    } form {
+        margin: 20px;
+    }
+    legend {
+        font-size: 17px;
+    }
+    label {
+        font-size: 13px;
+    }
+}
+
+h2 {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #343a40;
+    font-style: italic;
+    font-size: 35px;
+    border-bottom: 1px solid black;
+    padding-bottom: 5px;
 }
 
 .list-container__photo {

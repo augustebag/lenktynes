@@ -7,7 +7,7 @@
       <div class="card">
        <div class="card-header">
          <h2>Horses</h2>
-
+         <div class="row">
        <form action="{{route('horse.index')}}" method="get" class="sort-form">
         <fieldset>
             <legend>Sort by: </legend>
@@ -32,6 +32,7 @@
       </fieldset>
       <button class="btn btn-sm btn-outline-dark" type="submit">Search</button>
   </form>
+</div>
     </div>
   </div>
       
