@@ -13,8 +13,46 @@ class HorseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $dir = 'asc';
+        $sort = 'name';
+        $horses = Horse::all();
+        $defaultHorse = 0;
+        
+        if ($request->sort_by && $request->dir) {
+            if ('name' == $request->sort_by && 'asc' == $request->dir) {
+                $horses = Horse::orderBy('name')->paginate(15)->withQueryString();
+            } elseif ('name' == $request->sort_by && 'desc' == $request->dir) {
+                $horses = Horse::orderBy('name')->paginate(15)->withQueryString();
+                $dir = 'desc';
+            } elseif ('runs' == $request->sort_by && 'asc' == $request->dir) {
+                $horses = Horse::orderBy('runs')->paginate(15)->withQueryString();
+                $dir = 'runs';
+            } elseif ('runs' == $request->sort_by && 'desc' == $request->dir) {
+                $horses = Horse::orderBy('runs')->paginate(15)->withQueryString();
+                $dir = 'desc';
+                $dir = 'runs';
+            } 
+            else { $horses = Horse::paginate(15)->withQueryString();
+            } 
+            
+        }  elseif ($request->horse_id) {
+            $horses = Horse::where('horse_id', (int)$request->horse_id)->paginate(15)->withQueryString();
+            $defaultHorse = (int)$request->horse_id;
+        } else {
+            $horses = Horse::paginate(15)->withQueryString();
+        }
+
+        
+        return view('horse.index', 
+        ['horses' => $horses,
+        'dir' => $dir,
+        'sort' => $sort,
+        'horses' => $horses,
+        'defaultHorse' => $defaultHorse,
+    ]);
+    
         $horses = Horse::all();
         return view('horse.index', ['horses' => $horses]);
 

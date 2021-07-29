@@ -49,6 +49,7 @@
             </div>
           </li>
             @endforeach
+            {{$horses->links()}}
           </ul>
           </div>
         </div>

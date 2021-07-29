@@ -25,26 +25,26 @@ class BetterController extends Controller
         
         if ($request->sort_by && $request->dir) {
             if ('name' == $request->sort_by && 'asc' == $request->dir) {
-                $betters = Better::orderBy('name')->get();
+                $betters = Better::orderBy('name')->paginate(15)->withQueryString();
             } elseif ('name' == $request->sort_by && 'desc' == $request->dir) {
-                $betters = Better::orderBy('name')->get();
+                $betters = Better::orderBy('name')->paginate(15)->withQueryString();
                 $dir = 'desc';
             } elseif ('surname' == $request->sort_by && 'asc' == $request->dir) {
-                $betters = Better::orderBy('surname')->get();
+                $betters = Better::orderBy('surname')->paginate(15)->withQueryString();
                 $dir = 'surname';
             } elseif ('surname' == $request->sort_by && 'desc' == $request->dir) {
-                $betters = Better::orderBy('surname')->get();
+                $betters = Better::orderBy('surname')->paginate(15)->withQueryString();
                 $dir = 'desc';
                 $dir = 'surname';
             } 
-            else { $betters = Better::all();
-            }
+            else { $betters = Better::paginate(15)->withQueryString();
+            } 
             
         }  elseif ($request->horse_id) {
-            $betters = Better::where('horse_id', (int)$request->horse_id)->get();
+            $betters = Better::where('horse_id', (int)$request->horse_id)->paginate(15)->withQueryString();
             $defaultHorse = (int)$request->horse_id;
         } else {
-            $betters = Better::all();
+            $betters = Better::paginate(15)->withQueryString();
         }
 
         
@@ -66,7 +66,7 @@ class BetterController extends Controller
      */
     public function create()
     {
-        $horses = Horse::orderBy('name')->get();
+        $horses = Horse::orderBy('name')->paginate(15)->withQueryString();
        return view('better.create', ['horses' => $horses]);
 
     }

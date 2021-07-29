@@ -70,6 +70,7 @@
                     </div>
                   </li>
                   @endforeach
+                  {{$betters->links()}}
                 </ul>
                 </div>
               </div>
