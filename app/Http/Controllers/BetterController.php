@@ -6,6 +6,7 @@ use App\Models\Better;
 use App\Models\Horse;
 use Illuminate\Http\Request;
 use Validator;
+use PDF;
 
 class BetterController extends Controller
 {
@@ -110,7 +111,7 @@ class BetterController extends Controller
      */
     public function show(Better $better)
     {
-        //
+        return view('better.show', ['better' => $better]);
     }
 
     /**
@@ -168,4 +169,11 @@ class BetterController extends Controller
          return redirect()->route('better.index');
 
     }
+
+    public function pdf(Better $better)
+    {
+        $pdf = PDF::loadView('better.pdf', ['better' => $better]);
+        return $pdf->download($better ->name.'.pdf');
+    }
+
 }

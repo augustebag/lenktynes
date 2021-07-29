@@ -41,5 +41,7 @@ Route::group(['prefix' => 'horses'], function(){
     Route::post('update/{better}', [BetterController::class, 'update'])->name('better.update');
     Route::post('delete/{better}', [BetterController::class, 'destroy'])->name('better.destroy');
     Route::get('show/{better}', [BetterController::class, 'show'])->name('better.show');
+
+    Route::get('pdf/{better}', [BetterController::class, 'pdf'])->name('better.pdf'); 
  }); 
  

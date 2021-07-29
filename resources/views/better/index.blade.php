@@ -63,6 +63,7 @@
                         <div class="list-container__buttons">
                           <form method="POST" action="{{route('better.destroy', [$better])}}">
                             @csrf
+                            <a href="{{route('better.show',[$better])}}" class="btn btn-outline-dark btn-sm">More info</a>
                             <a href="{{route('better.edit',[$better])}}" class="btn btn-outline-dark btn-sm">Edit</a>
                           <button type="submit" class="btn btn-outline-danger btn-sm">DELETE</button>
                           </form>
