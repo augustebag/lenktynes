@@ -22,28 +22,24 @@ class HorseController extends Controller
         $horses = Horse::all();
         $s = '';
         
-        if ($request->sort_by && $request->dir) {
-            if ('name' == $request->sort_by && 'asc' == $request->dir) {
+        if ($request->sort_by) {
+            if ('name' == $request->sort_by) {
                 $horses = Horse::orderBy('name')->paginate(15)->withQueryString();
-            } elseif ('name' == $request->sort_by && 'desc' == $request->dir) {
-                $horses = Horse::orderBy('name', 'desc')->paginate(15)->withQueryString();
-                $dir = 'desc';
-            } elseif ('runs' == $request->sort_by && 'asc' == $request->dir) {
+            } elseif ('name' == $request->sort_by) {
+                $horses = Horse::orderBy('name')->paginate(15)->withQueryString();
+            } elseif ('runs' == $request->sort_by) {
                 $horses = Horse::orderBy('runs')->paginate(15)->withQueryString();
                 $sort = 'runs';
-            } elseif ('runs' == $request->sort_by && 'desc' == $request->dir) {
-                $horses = Horse::orderBy('runs', 'desc')->paginate(15)->withQueryString();
-                $dir = 'desc';
+            } elseif ('runs' == $request->sort_by) {
+                $horses = Horse::orderBy('runs')->paginate(15)->withQueryString();
                 $sort = 'runs';
             } 
-                else { $horses = Horse::paginate(15)->withQueryString();
+                else { 
+                    $horses = Horse::paginate(15)->withQueryString();
             } 
             //FILTRAVIMAS
         }  elseif ($request->horse_id) {
             $horses = Horse::where('horse_id', (int)$request->horse_id)->paginate(15)->withQueryString();
-            $defaultHorse = (int)$request->horse_id;
-        } elseif ($request->horse_id) {
-            $betters = Better::where('horse_id', (int)$request->horse_id)->paginate(15)->withQueryString();
             $defaultHorse = (int)$request->horse_id;
         } 
         
@@ -235,8 +231,8 @@ class HorseController extends Controller
             }
         }
 
-        if ($horse->HorseBetters->count()) {
-             return redirect()->back()->with('success_message', 'Trinti negalima, nes turi nebaigtu darbu');
+        if ($horse->horseHasBetter()->count()) {
+             return redirect()->rout('horse.index')->with('success_message', 'Trinti negalima, nes turi nebaigtu darbu');
          }
         //  HorseBetters
          $horse->delete();

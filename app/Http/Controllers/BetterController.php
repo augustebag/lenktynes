@@ -30,19 +30,17 @@ class BetterController extends Controller
         $defaultHorse = 0;
         $s = '';
         
-        if ($request->sort_by && $request->dir) {
-            if ('name' == $request->sort_by && 'asc' == $request->dir) {
+        if ($request->sort_by) {
+            if ('name' == $request->sort_by) {
                 $betters = Better::orderBy('name')->paginate(15)->withQueryString();
-            } elseif ('name' == $request->sort_by && 'desc' == $request->dir) {
-                $betters = Better::orderBy('name', 'desc')->paginate(15)->withQueryString();
-                $dir = 'desc';
-            } elseif ('bet' == $request->sort_by && 'asc' == $request->dir) {
-                $betters = Better::orderBy('bet')->paginate(15)->withQueryString();
-                $sort = 'bet';
-            } elseif ('bet' == $request->sort_by && 'desc' == $request->dir) {
-                $betters = Better::orderBy('bet', 'desc')->paginate(15)->withQueryString();
-                $dir = 'desc';
-                $sort = 'bet';
+            } elseif ('name' == $request->sort_by) {
+                $betters = Better::orderBy('name')->paginate(15)->withQueryString();
+            } elseif ('surname' == $request->sort_by) {
+                $betters = Better::orderBy('surname')->paginate(15)->withQueryString();
+                $sort = 'surname';
+            } elseif ('surname' == $request->sort_by) {
+                $betters = Better::orderBy('surname')->paginate(15)->withQueryString();
+                $sort = 'surname';
             } 
                 else { $betters = Better::paginate(15)->withQueryString();
             } 
@@ -183,7 +181,8 @@ class BetterController extends Controller
     public function destroy(Better $better)
     {
         $better->delete();
-         return redirect()->route('better.index');
+         return redirect()->route('better.index')->with('success_message', 'Sekmingai ištrintas.');
+
 
     }
 
