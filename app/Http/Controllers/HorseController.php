@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Horse;
+use App\Models\Better;
 use Illuminate\Http\Request;
 use Validator;
 use PDF;
@@ -16,7 +17,7 @@ class HorseController extends Controller
      */
     public function index(Request $request)
     {
-        $dir = 'asc';
+
         $sort = 'name';
         $defaultHorse = 0;
         $horses = Horse::all();
@@ -59,7 +60,6 @@ class HorseController extends Controller
         
         return view('horse.index', [
         'horses' => $horses,
-        'dir' => $dir,
         'sort' => $sort,
         'horses' => $horses,
         'defaultHorse' => $defaultHorse,
@@ -231,8 +231,8 @@ class HorseController extends Controller
             }
         }
 
-        if ($horse->horseHasBetter()->count()) {
-             return redirect()->rout('horse.index')->with('success_message', 'Trinti negalima, nes turi nebaigtu darbu');
+        if ($horse->horseHasBetter->count()) {
+             return redirect()->back()->with('info_message', 'Trinti negalima, nes turi nebaigtu darbu');
          }
         //  HorseBetters
          $horse->delete();

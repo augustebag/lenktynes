@@ -24,10 +24,9 @@ class BetterController extends Controller
     {       
         // $betters = Better::all();
         
-        $dir = 'asc';
         $sort = 'name';
-        $horses = Horse::all();
         $defaultHorse = 0;
+        $horses = Horse::all();
         $s = '';
         
         if ($request->sort_by) {
@@ -66,7 +65,6 @@ class BetterController extends Controller
         
         return view('better.index', [
         'betters' => $betters,
-        'dir' => $dir,
         'sort' => $sort,
         'horses' => $horses,
         'defaultHorse' => $defaultHorse,

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Horse extends Model
 {
     use HasFactory;
-    public function horseBetters()
+    public function horseHasBetter()
     {
         return $this->hasMany('App\Models\Better', 'horse_id', 'id');
     }

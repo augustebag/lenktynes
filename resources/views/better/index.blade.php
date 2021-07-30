@@ -22,18 +22,18 @@
               <button type="submit" class="btn btn-sm btn-outline-dark">Sort</button>
               <a href="{{route('better.index')}}" class="btn btn-outline-danger btn-sm">Clear</a>
             </form>
-            <form>
+            <form action="{{route('better.index')}}" method="get" class="sort-form">
               <fieldset>
                 <legend>Filter by: </legend>
                 <select class="horse_id" class="form-control">
                   @foreach($horses as $horse)
-                  <option value="{{$horse->id}}" @if($defaultHorse==$horse->id) selected @endif>
+                  <option value="{{$horse->id}}" @if($defaultHorse == $horse->id) selected @endif>
                     {{$horse->name}}
                   </option>
                   @endforeach
                 </select><br>
-                <button type="submit" class="btn btn-sm btn-outline-dark filter">Submit</button>
               </fieldset>
+                <button type="submit" class="btn btn-sm btn-outline-dark filter">Submit</button>
             </form>
             <form action="{{route('better.index')}}" method="get" class="sort-form">
               <fieldset>
