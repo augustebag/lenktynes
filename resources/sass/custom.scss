@@ -3,7 +3,7 @@ body {
 }
 
 .card {
-    background-color: #38c172;
+    background-color: #77e2a5;
     border: none;
 }
 .card-header {
@@ -20,6 +20,22 @@ body {
     label {
         font-size: 13px;
     }
+}
+
+.search {
+    top: 355px;
+    left: 575px;
+    height: 30px;
+    margin-bottom: 1px;
+}
+.filter {
+    margin-top: 4px;
+}
+
+.horse_id {
+    border: none;
+    top: 355px;
+    height: 27px;
 }
 
 h2 {

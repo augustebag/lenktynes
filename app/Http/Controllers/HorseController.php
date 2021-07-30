@@ -238,7 +238,7 @@ class HorseController extends Controller
         if ($horse->HorseBetters->count()) {
              return redirect()->back()->with('success_message', 'Trinti negalima, nes turi nebaigtu darbu');
          }
-        
+        //  HorseBetters
          $horse->delete();
          return redirect()->route('horse.index')->with('success_message', 'Sekmingai ištrintas.');
 
